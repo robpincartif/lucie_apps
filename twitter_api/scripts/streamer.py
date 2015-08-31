@@ -85,7 +85,7 @@ class MyStreamer(TwythonStreamer):
                     twitter.update_status(status=answer)
                     rospy.wait_for_service('aes/nice')
                     try:
-                        s = rospy.ServiceProxy(name,std_srvs.srv.Trigger)
+                        s = rospy.ServiceProxy('aes/nice',std_srvs.srv.Trigger)
                         resp = s()
                     except rospy.ServiceException,e:
                         print "Failed: %s" % e
@@ -102,7 +102,7 @@ class MyStreamer(TwythonStreamer):
                     # wait a duration
                     rospy.wait_for_service('aes/nasty')
                     try:
-                        s = rospy.ServiceProxy(name,std_srvs.srv.Trigger)
+                        s = rospy.ServiceProxy('aes/nasty',std_srvs.srv.Trigger)
                         resp = s()
                     except rospy.ServiceException,e:
                         print "Failed: %s" % e
