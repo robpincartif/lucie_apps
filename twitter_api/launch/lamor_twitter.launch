@@ -1,0 +1,10 @@
+<launch>
+
+  <!-- Node which does all the tweeting -->
+  <node name="lamor_tweets" pkg="twitter_api" type="tweet.py" output="screen"/>
+
+  <!-- Stream listener-->
+  <node name="lamor_tweet_replier" pkg="twitter_api" type="streamer.py" output="screen"/>
+
+
+</launch>
