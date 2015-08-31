@@ -37,10 +37,14 @@ or, with easy_install
 
   * Save the parameters on your files <strong>tweet.py</strong> and <strong>streamer.py</strong>:
 
-  ```  APP_KEY='Nkq8oSHsrSSICjnZuSf88bray'
-    	APP_SECRET='V0scqfG9u3j0KJCzV4y2HKSIma4NXw5NizXViebvkz9qt9f3LK'
-  	OAUTH_TOKEN='3499297936-gTkxBYcgYNehOyEdldu8n7ncvIoIOYNHgcholQ6'
-    OAUTH_TOKEN_SECRET ='TfY8CLUKLx74dQ7hoaYMZuAhezI6DZ3uLtkUIpHoJKawO'```
+``` 
+	APP_KEY='Nkq8oSHsrSSICjnZuSf88bray'
+	APP_SECRET='V0scqfG9u3j0KJCzV4y2HKSIma4NXw5NizXViebvkz9qt9f3LK'
+	OAUTH_TOKEN='3499297936-gTkxBYcgYNehOyEdldu8n7ncvIoIOYNHgcholQ6'
+	OAUTH_TOKEN_SECRET ='TfY8CLUKLx74dQ7hoaYMZuAhezI6DZ3uLtkUIpHoJKawO'
+    
+```
+
   * Now you are ready to go!
 
 ## Tweeting
