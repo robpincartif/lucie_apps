@@ -54,6 +54,4 @@ The incomming tweet must to include:
   * @LucieLAMoR and:
   	* <strong>good robot, cool robot, great robot</strong>kicks the hormone down if the service /aes/nasty is called
   	* <strong>bad robot, rubbish robot</strong>kicks the hormone down if the service /aes/nasty is called
-  	* <strong>coffee,  #Coffee, </strong>the server <strong>find_object</strong>find_object is called
-
-
+  	* <strong>coffee,  #Coffee, </strong>the server <strong>find_object</strong> is called
