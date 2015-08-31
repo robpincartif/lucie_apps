@@ -9,6 +9,7 @@ import scitos_msgs.msg
 import actionlib
 from wait_action.msg import *
 import time
+import std_srvs.srv
 
 from twython import TwythonStreamer
 
@@ -59,18 +60,6 @@ class MyStreamer(TwythonStreamer):
                         else :
                             answer = "@%s my battery level is %d" %(user,self._battery_level)
 
-                #Position
-                if code == 2 :
-                    answer = "@%s You asked for my Position, I will be able to answer soon" %user
-                    print answer
-                    wait_secs = 5
-    
-                    # wait a duration
-                    client = actionlib.SimpleActionClient('wait_node', WaitAction)
-                    client.wait_for_server()
-                    goal = WaitGoal(wait_duration=rospy.Duration(wait_secs))
-                    client.send_goal(goal)
-                    client.wait_for_result()
                     
                 #Coffe
                 if code == 3 :
@@ -80,11 +69,43 @@ class MyStreamer(TwythonStreamer):
                     wait_secs = 5
     
                     # wait a duration
-                    client = actionlib.SimpleActionClient('wait_node', WaitAction)
+                    client = actionlib.SimpleActionClient('find_object', WaitAction)
                     client.wait_for_server()
                     goal = WaitGoal(wait_duration=rospy.Duration(wait_secs))
                     client.send_goal(goal)
                     client.wait_for_result()
+                                #Nice
+                if code == 4 :
+                    answer = "@%s Thank you" %user
+                    print answer
+    
+                    # wait a duration
+                    answer=''+answer+ '  #'+time.strftime("%x")+'_'+ time.strftime("%X") 
+                    print answer
+                    twitter.update_status(status=answer)
+                    rospy.wait_for_service('aes/nice')
+                    try:
+                        s = rospy.ServiceProxy(name,std_srvs.srv.Trigger)
+                        resp = s()
+                    except rospy.ServiceException,e:
+                        print "Failed: %s" % e
+
+                                #Nice
+                if code == 5 :
+                    answer = "@%s That\'s rude" %user
+                    print answer
+                    
+                    answer=''+answer+ '  #'+time.strftime("%x")+'_'+ time.strftime("%X") 
+                    print answer
+                    twitter.update_status(status=answer)
+    
+                    # wait a duration
+                    rospy.wait_for_service('aes/nasty')
+                    try:
+                        s = rospy.ServiceProxy(name,std_srvs.srv.Trigger)
+                        resp = s()
+                    except rospy.ServiceException,e:
+                        print "Failed: %s" % e
               
                 # not understood    
                 if not understood: 
@@ -92,9 +113,11 @@ class MyStreamer(TwythonStreamer):
                     print answer
                 
                 answer=''+answer+ '  #'+time.strftime("%x")+'_'+ time.strftime("%X") 
+                print answer
                 twitter.update_status(status=answer)
 
 
+            
         # Want to disconnect after the first result?
         # self.disconnect()
 
@@ -106,6 +129,18 @@ class MyStreamer(TwythonStreamer):
             code = 3
         if 'coffee' in request:
             code = 3
+        if 'good robot' in request:
+            code = 4
+        if 'great robot' in request:
+            code = 4
+        if 'cool robot' in request:
+            code = 4
+        if 'smart robot' in request:
+            code = 4
+        if 'bad robot' in request:
+            code = 5
+        if 'rubbish robot' in request:
+            code = 5
             
         return code
         
